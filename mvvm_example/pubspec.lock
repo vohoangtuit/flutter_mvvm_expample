@@ -86,6 +86,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.4"
   http:
     dependency: "direct main"
     description:
@@ -128,6 +135,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.8"
+  mvvm:
+    dependency: "direct main"
+    description:
+      name: mvvm
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.8"
   path:
     dependency: transitive
     description:

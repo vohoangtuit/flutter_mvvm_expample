@@ -16,35 +16,66 @@ Widget appBarWithTitle(BuildContext context, String title) {
   );
 }
 
-InputDecoration inputDecoration(
-    String labelText, String hintText, String errorText) {
+InputDecoration inputDecoration(String hintText,IconData icon) {
   return InputDecoration(
-    // labelText: labelText ,
     hintText: hintText,
-    // errorText: errorText,
-    hintStyle: TextStyle(color: Colors.white54),
-    focusedBorder:
-        UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-    enabledBorder:
-        UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.teal.shade300, width: 1.0),
+      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.grey.shade300, width: 1.0),
+      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+    ),
+    prefixIcon: Icon(
+      icon,
+      color: Colors.teal,
+    ),
+    contentPadding: EdgeInsets.only(left: 10, top: 8, right: 10, bottom: 8),// padding
+    isDense: true,// padding
   );
 }
 
-Decoration decorationMessageRight(){
+Decoration decorationMessageRight() {
   return BoxDecoration(
-   color: Colors.blue,
-    borderRadius: BorderRadius.only(topLeft: Radius.circular(23),topRight: Radius.circular(23),bottomLeft: Radius.circular(23)),
+    color: Colors.blue,
+    borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(23),
+        topRight: Radius.circular(23),
+        bottomLeft: Radius.circular(23)),
   );
 }
-Decoration decorationMessageLeft(){
+
+Decoration decorationMessageLeft() {
   return BoxDecoration(
     color: Colors.grey,
-    borderRadius: BorderRadius.only(topLeft: Radius.circular(23),topRight: Radius.circular(23),bottomRight: Radius.circular(23)),
+    borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(23),
+        topRight: Radius.circular(23),
+        bottomRight: Radius.circular(23)),
   );
 }
+
 BoxDecoration decorationButton(Color color, double borderRadius) {
   return BoxDecoration(
     color: color,
     borderRadius: BorderRadius.circular(borderRadius),
+  );
+}
+
+Widget widgetLogo() {
+  return Image.asset(
+    'assets/images/logo.png',
+    width: 120,
+    height: 120,
+  );
+}
+
+Widget baseGestureDetector(BuildContext context,Widget child){
+  return GestureDetector(
+    child: child,
+    onTap: (){
+      FocusScope.of(context).requestFocus(FocusNode());
+    },
   );
 }

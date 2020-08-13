@@ -15,7 +15,7 @@ class NormalButton extends StatelessWidget {
       height: 45,
       child: RaisedButton(
         onPressed: onPressed,
-        color: Colors.blue,
+        color: Colors.teal,
         shape: RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(8.0)),
         child: Text(
