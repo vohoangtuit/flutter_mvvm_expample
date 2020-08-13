@@ -15,11 +15,15 @@ class RestClient{
         .then((data) {
       if(data.statusCode==200){
         final jsonData = json.decode(data.body);
-        final notes = <UserModel>[];
-        for(var item in jsonData){
-          notes.add(UserModel.fromJson(item));
+      //  print("jsonData "+jsonData.toString());
+        final users =jsonData['user'];
+       // print("users "+users.toString());
+        final user = <UserModel>[];
+        for(var item in users){
+          print("item "+item.toString());
+          user.add(UserModel.fromJson(item));
         }
-        return APIResponse<List<UserModel>>(data:notes);
+        return APIResponse<List<UserModel>>(data:user);
       }
       return APIResponse<List<UserModel>>(error:true, errorMessage:'An error occured');
     }).catchError((_)=>APIResponse<List<UserModel>>(error:true, errorMessage:'An error occured'));

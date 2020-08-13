@@ -8,12 +8,21 @@ TextStyle textBlueDefault(){
 TextStyle textBlueDeMedium(){
   return TextStyle(color: Colors.blue, fontSize: 16);
 }
+TextStyle smallTextBlack() {
+  return TextStyle(color: Colors.black, fontSize: 12);
+}
+TextStyle normalTextBlack() {
+  return TextStyle(color: Colors.black, fontSize: 14);
+}
+TextStyle mediumTextBlack() {
+  return TextStyle(color: Colors.black, fontSize: 16);
+}
 TextStyle textWhiteButtonDefault(){
   return TextStyle(color: Colors.white, fontSize: 16);
 }
 
 TextStyle smallTextWhite() {
-  return TextStyle(color: Colors.white, fontSize: 13);
+  return TextStyle(color: Colors.white, fontSize: 12);
 }
 TextStyle normalTextWhite() {
   return TextStyle(color: Colors.white, fontSize: 14);

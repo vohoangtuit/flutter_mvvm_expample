@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_example/utils/utils.dart';
+import 'package:mvvm_example/views/home.dart';
 import 'package:mvvm_example/views/signup.dart';
 import 'package:mvvm_example/widget/basewidget.dart';
 import 'package:mvvm_example/widget/button.dart';
@@ -105,6 +106,8 @@ class _SignInScreenState extends State<SignInScreen> {
   _handelSigIn() {
     if (formKey.currentState.validate()) {
       print("validate data");
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+
     }
   }
 }

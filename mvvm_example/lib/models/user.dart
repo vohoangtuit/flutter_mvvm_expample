@@ -4,7 +4,8 @@ class UserModel {
   String email;
   String password;
   String avatar;
-  DateTime created;
+ // DateTime created;
+  String created;
 
 
   UserModel({this.id, this.name, this.email, this.password, this.avatar, this.created});
@@ -15,8 +16,9 @@ class UserModel {
       name: item['name'],
       email: item['email'],
       password: item['password'],
-      avatar: item['avatar']!=null?item['avatar']:null,
-      created: item['created']!=null?DateTime.parse(item['created']):null,
+      //avatar: item['avatar']!=null?item['avatar']:null,
+     // created: item['created']!=null?DateTime.parse(item['created']):null,
+      created: item['created'],
     );
   }
 }
