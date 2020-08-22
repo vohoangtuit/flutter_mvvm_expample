@@ -32,7 +32,7 @@ class _ItemUserState extends State<ItemUser> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(widget.userModel.name,style: textBlueDeMedium(), overflow: TextOverflow.ellipsis,
+                            Text(widget.userModel.name,style: textBlueMedium(), overflow: TextOverflow.ellipsis,
                               maxLines: 2,),
                             SizedBox(height: 5,),
                             Text(" "+widget.userModel.email,style: normalTextBlack()),

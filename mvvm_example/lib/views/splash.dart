@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: <Widget>[
             widgetLogo(),
             SizedBox(height: 20,),
-            Text('Welcome',style: textBlueDeMedium(),textAlign: TextAlign.center,)
+            Text('Welcome',style: textBlueMedium(),textAlign: TextAlign.center,)
           ],
         ),
       )),

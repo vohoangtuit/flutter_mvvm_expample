@@ -21,4 +21,5 @@ class UserModel {
       created: item['created'],
     );
   }
+
 }

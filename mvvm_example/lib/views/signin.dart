@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_example/base/bases_statefulwidget.dart';
+import 'package:mvvm_example/models/user.dart';
+import 'package:mvvm_example/models/user_login.dart';
+import 'package:mvvm_example/utils/shared_preference.dart';
 import 'package:mvvm_example/utils/utils.dart';
+import 'package:mvvm_example/viewmodels/user_viewmodel.dart';
 import 'package:mvvm_example/views/home.dart';
 import 'package:mvvm_example/views/signup.dart';
 import 'package:mvvm_example/widget/basewidget.dart';
@@ -10,10 +15,12 @@ class SignInScreen extends StatefulWidget {
   _SignInScreenState createState() => _SignInScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignInScreenState extends BaseStatefulState<SignInScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
+  UserViewModel userViewModel = UserViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -102,12 +109,44 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
         ));
   }
+  @override
+  void initState() {
+    super.initState();
+    _emailController.text ='vohoangtu2401@gmail.com';
+    _passwordController.text ='123456';
+  }
 
-  _handelSigIn() {
+
+  _handelSigIn() async{
     if (formKey.currentState.validate()) {
       print("validate data");
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
 
+      setState(() {
+        isLoading =true;
+      });
+      UserLogin userLogin = new UserLogin(_emailController.text,_passwordController.text);
+      var result =await userViewModel.login(userLogin);
+      if(result!=null&&result.data!=null){
+
+        setState(() {
+          isLoading =false;
+          _saveData(result.data);
+
+        });
+      }
+      else{
+        setState(() {
+          isLoading =false;
+        });
+        print("no data-----------------------");
+      }
     }
+  }
+  _saveData(UserModel userModel){
+    SharedPre.saveBool(SharedPre.sharedPreIsLogin, true);
+    SharedPre.saveString(SharedPre.sharedPreFullName, userModel.name);
+    SharedPre.saveString(SharedPre.sharedPreEmail, userModel.email);
+    SharedPre.saveString(SharedPre.sharedPreAvatar, userModel.avatar);
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
   }
 }
