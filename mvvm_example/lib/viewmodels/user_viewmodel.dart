@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:mvvm_example/models/user_model.dart';
 import 'package:mvvm_example/network/base/server_errror.dart';

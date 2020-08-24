@@ -12,8 +12,11 @@ class BaseDialog extends StatelessWidget {
   BuildContext context;
   @override
   Widget build(BuildContext context) {
+    if(this.context!=null){
+      Navigator.pop(this.context);
+    }
     this.context =context;
-      dialog = new Dialog(
+      dialog =  Dialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -45,10 +48,5 @@ class BaseDialog extends StatelessWidget {
 
     return dialog;
   }
-  dismiss(){
-    dialog =null;
-    if(context!=null){
-      Navigator.pop(context);
-    }
-  }
+
 }

@@ -35,16 +35,13 @@ abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
     // Parent method
   }
   showBaseDialog(String title,String description){
-    if(dialog!=null){
-      dialog.dismiss();
-      dialog =null;
-    }
-    dialog = BaseDialog(title: title, description: description);
+    dialog = new BaseDialog(title: title, description: description);
     showDialog(
      // barrierDismissible: false,// touch outside dismiss
      context: context,
        // context: _scaffoldKey.currentContext,
-      builder: (BuildContext context) => dialog
+      // ignore: missing_return
+      builder: (BuildContext context) =>dialog
     );
   }
 

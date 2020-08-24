@@ -3,6 +3,7 @@ import 'package:mvvm_example/base/bases_statefulwidget.dart';
 import 'package:mvvm_example/models/product.dart';
 import 'package:mvvm_example/utils/shared_preference.dart';
 import 'package:mvvm_example/viewmodels/product_viewmodel.dart';
+import 'package:mvvm_example/views/detail_product.dart';
 import 'package:mvvm_example/views/items/item_product.dart';
 import 'package:mvvm_example/views/items/item_user.dart';
 import 'package:mvvm_example/views/signin.dart';
@@ -53,7 +54,7 @@ class _HomeScreenState extends BaseStatefulState<HomeScreen> {
       itemCount: list!=null?list.length:0,
       itemBuilder: (context,index){
         return ItemProduct(list[index],(){
-         // Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailUser(listUser[index])));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailProduct(list[index])));
         });
       },
     );
