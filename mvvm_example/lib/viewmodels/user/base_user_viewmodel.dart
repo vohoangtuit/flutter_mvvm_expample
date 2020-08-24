@@ -13,5 +13,6 @@ import 'package:mvvm_example/network/user/user_server.dart';
   UserBaseViewModel({this.baseStatefulState}) {
    dio = new Dio();
    restApi = new UserServer(dio);
+  //final client = UserServer(dio, baseUrl: "your base url");//Multiple endpoints support
   }
 }

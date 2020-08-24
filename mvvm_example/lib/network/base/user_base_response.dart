@@ -1,4 +1,5 @@
 
+import 'package:mvvm_example/models/user_model.dart';
 import 'package:mvvm_example/network/base/server_errror.dart';
 
 class UserBaseResponseModel<T> {
@@ -7,14 +8,15 @@ class UserBaseResponseModel<T> {
   String message;
   String token;
 
-  T data;
+  UserModel user;
+
 
   setException(ServerError error) {
     serverError = error;
   }
 
-  setData(T data) {
-    this.data = data;
+  setUser(UserModel user) {
+    this.user = user;
   }
 
 
@@ -23,19 +25,21 @@ class UserBaseResponseModel<T> {
   }
 
 
-  UserBaseResponseModel({this.status, this.message, this.token, this.data});
+  UserBaseResponseModel({this.status, this.message, this.token, this.user});
 
-  factory UserBaseResponseModel.fromJson(Map<String, dynamic> item){
+  factory UserBaseResponseModel.fromJsonLogin(Map<String, dynamic> user){
     return UserBaseResponseModel(
-        status: item['status'],
-        message: item['message'],
-        token: item['token'],
-        data: item['data']
+        status: user['status'],
+        message: user['message'],
+        token: user['token']!=null?user['token']:null,
+        user: user['user']!=null?UserModel.fromJson(user['user']):null,
     );
   }
-
-  @override
-  String toString() {
-    return 'UserBaseResponseModel{status: $status, message: $message, token: $token, data: $data}';
+  factory UserBaseResponseModel.fromJsonRegister(Map<String, dynamic> user){
+    return UserBaseResponseModel(
+      status: user['status'],
+      message: user['message'],
+      user: user['users']!=null?UserModel.fromJson(user['users']):null,
+    );
   }
 }

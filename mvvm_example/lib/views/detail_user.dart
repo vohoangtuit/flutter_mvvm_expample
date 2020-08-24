@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_example/models/user.dart';
+import 'package:mvvm_example/models/user_model.dart';
 import 'package:mvvm_example/widget/basewidget.dart';
 
 class DetailUser extends StatefulWidget {

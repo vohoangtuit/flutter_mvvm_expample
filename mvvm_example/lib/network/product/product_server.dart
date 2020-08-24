@@ -4,6 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'product_server.g.dart';
 // todo: run comment restclient.g.dart =// cd root project : flutter pub run build_runner build
+//https://github.com/trevorwang/retrofit.dart/
 // https://vohoangtu-authencation.herokuapp.com/api/
 // https://5f34f6e09124200016e19304.mockapi.io/api/v1/
 @RestApi(baseUrl: "https://5f34f6e09124200016e19304.mockapi.io/api/v1/")

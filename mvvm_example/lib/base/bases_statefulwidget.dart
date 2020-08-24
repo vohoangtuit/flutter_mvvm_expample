@@ -10,10 +10,12 @@ abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
   BaseDialog  dialog;
  static BaseStatefulState baseStatefulState;
   var  restApi;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
 
     return Stack(
+      key: _scaffoldKey,
       children: <Widget>[
         Container(
           child: isLoading?widgetLoading():Container() ,
@@ -35,11 +37,13 @@ abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
   showBaseDialog(String title,String description){
     if(dialog!=null){
       dialog.dismiss();
+      dialog =null;
     }
-    dialog = new BaseDialog(title: title, description: description);
+    dialog = BaseDialog(title: title, description: description);
     showDialog(
      // barrierDismissible: false,// touch outside dismiss
-      context: context,
+     context: context,
+       // context: _scaffoldKey.currentContext,
       builder: (BuildContext context) => dialog
     );
   }

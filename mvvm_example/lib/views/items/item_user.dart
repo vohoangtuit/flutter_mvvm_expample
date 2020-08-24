@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:mvvm_example/models/user.dart';
+import 'package:mvvm_example/models/user_model.dart';
 import 'package:mvvm_example/widget/text_style.dart';
 
 class ItemUser extends StatefulWidget {

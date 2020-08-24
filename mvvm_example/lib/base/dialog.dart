@@ -46,6 +46,7 @@ class BaseDialog extends StatelessWidget {
     return dialog;
   }
   dismiss(){
+    dialog =null;
     if(context!=null){
       Navigator.pop(context);
     }
