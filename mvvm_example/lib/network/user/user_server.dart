@@ -10,7 +10,6 @@ part 'user_server.g.dart';
 // https://5f34f6e09124200016e19304.mockapi.io/api/v1/
 @RestApi(baseUrl: "https://vohoangtu-authencation.herokuapp.com/api/")
 abstract class UserServer{
-
   factory UserServer(Dio dio, {String baseUrl}) {
     Map<String, dynamic> requestHeaders = {
       'Content-type': 'application/json',
@@ -19,8 +18,8 @@ abstract class UserServer{
       'Language': 'vi'
     };
     dio.options = BaseOptions(
-      receiveTimeout: 5000,
-      connectTimeout: 5000,
+      receiveTimeout: 7000,
+      connectTimeout: 7000,
       contentType: 'application/json',
       headers: requestHeaders,
 

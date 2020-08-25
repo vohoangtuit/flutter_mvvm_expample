@@ -3,7 +3,6 @@ import 'package:mvvm_example/base/bases_statefulwidget.dart';
 import 'package:mvvm_example/models/user_model.dart';
 import 'package:mvvm_example/network/request/user_request.dart';
 import 'package:mvvm_example/utils/shared_preference.dart';
-import 'package:mvvm_example/viewmodels/user_viewmodel.dart';
 import 'package:mvvm_example/widget/basewidget.dart';
 import 'package:mvvm_example/widget/button.dart';
 import 'package:mvvm_example/widget/loading.dart';
@@ -16,7 +15,6 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends BaseStatefulState<SignUpScreen> {
-  UserViewModel userViewModel = UserViewModel();
   TextEditingController _fullNameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -131,19 +129,21 @@ class _SignUpScreenState extends BaseStatefulState<SignUpScreen> {
       });
       var userLogin =  UserRequest.register(name:_fullNameController.text,email:_emailController.text,password:_passwordController.text) ;
       var result =await userViewModel.register(userLogin);
-      if(result!=null&&result.user!=null){
+      if(result!=null){
         setState(() {
           isLoading =false;
-          _saveData(result.user);
-
         });
+        if(result.user!=null){
+          _saveData(result.user);
+        }else{
+          showBaseDialog("Error", result.message);
+        }
       }
       else{
         setState(() {
           isLoading =false;
         });
-        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
-        print("no data-----------------------");
+        showBaseDialog("Error", "Please try again");
       }
     }
   }

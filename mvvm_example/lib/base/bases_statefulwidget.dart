@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_example/base/dialog.dart';
+import 'package:mvvm_example/viewmodels/product_viewmodel.dart';
+import 'package:mvvm_example/viewmodels/user_viewmodel.dart';
 import 'package:mvvm_example/widget/loading.dart';
 import 'package:mvvm_example/widget/loadingdialog.dart';
 
@@ -9,7 +11,8 @@ abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
   LoadingDialog loadingDialog;
   BaseDialog  dialog;
  static BaseStatefulState baseStatefulState;
-  var  restApi;
+  ProductViewModel productViewModel;
+  UserViewModel userViewModel;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -28,7 +31,8 @@ abstract class BaseStatefulState<T extends StatefulWidget> extends State<T> {
   void initState() {
     super.initState();
     baseStatefulState=this;
-   // restApi =  RestClient(baseStatefulState:baseStatefulState);
+    productViewModel = new ProductViewModel(baseStatefulState);
+    userViewModel = new UserViewModel(baseStatefulState);
   }
 
   void baseMethod() {

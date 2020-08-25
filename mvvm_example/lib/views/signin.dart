@@ -21,8 +21,6 @@ class _SignInScreenState extends BaseStatefulState<SignInScreen> {
   TextEditingController _passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  UserViewModel userViewModel = UserViewModel();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,18 +131,14 @@ class _SignInScreenState extends BaseStatefulState<SignInScreen> {
       UserRequest userLogin = new UserRequest.login(email:_emailController.text,password:_passwordController.text);
       var result =await userViewModel.login(userLogin);
       if(result!=null){
+        setState(() {
+          isLoading =false;
+        });
         if(result.user!=null){
-          setState(() {
-            isLoading =false;
-            _saveData(result.user);
+          _saveData(result.user);
 
-          });
         }else{
-          setState(() {
-            isLoading =false;
-          });
-          showBaseDialog('Error', result.message);
-
+          showBaseDialog("Error", result.message);
         }
 
       }
@@ -152,7 +146,7 @@ class _SignInScreenState extends BaseStatefulState<SignInScreen> {
         setState(() {
           isLoading =false;
         });
-        print("no data-----------------------");
+        showBaseDialog("Error", "Please try again");
       }
     }
   }

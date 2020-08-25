@@ -17,7 +17,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends BaseStatefulState<HomeScreen> {
-  var productModel = new ProductViewModel();
   List<Product> list = List<Product>();
   @override
   Widget build(BuildContext context) {
@@ -68,7 +67,7 @@ class _HomeScreenState extends BaseStatefulState<HomeScreen> {
     setState(() {
       isLoading =true;
     });
-    var result =await productModel.getProducts();
+    var result =await productViewModel.getProducts();
     if(result!=null&&result.data!=null){
       setState(() {
         isLoading =false;

@@ -16,7 +16,7 @@ class DetailProduct extends StatefulWidget {
 }
 
 class _DetailProductState extends BaseStatefulState<DetailProduct> {
-  var productModel = new ProductViewModel();
+
   Product detail;
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class _DetailProductState extends BaseStatefulState<DetailProduct> {
     setState(() {
       isLoading =true;
     });
-    var result =await productModel.getDetailProduct(widget.product.id);
+    var result =await productViewModel.getDetailProduct(widget.product.id);
     if(result!=null&&result.data!=null){
       setState(() {
         detail =result.data;
