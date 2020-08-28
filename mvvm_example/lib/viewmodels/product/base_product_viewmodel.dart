@@ -8,9 +8,15 @@ import 'file:///C:/TU/Develop/Demo/flutter_mvvm_example/mvvm_example/lib/network
   Dio dio;
   ProductServer network;
   final BaseStatefulState baseStatefulState;
-//  final Function(String message) errorMessage;
   ProductBaseViewModel({this.baseStatefulState}) {
    dio = new Dio();
    network = new ProductServer(dio);
+  }
+  showLoading(bool show){
+   if(show){
+    baseStatefulState.showLoading();
+   }else{
+    baseStatefulState.hideLoading();
+   }
   }
 }

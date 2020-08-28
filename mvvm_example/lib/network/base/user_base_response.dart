@@ -26,6 +26,7 @@ class UserBaseResponseModel<T> {
 
 
   UserBaseResponseModel({this.status, this.message, this.token, this.user});
+  UserBaseResponseModel.Error({this.status, this.message});
 
   factory UserBaseResponseModel.fromJsonLogin(Map<String, dynamic> user){
     return UserBaseResponseModel(

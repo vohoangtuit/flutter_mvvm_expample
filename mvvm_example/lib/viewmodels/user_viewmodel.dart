@@ -10,6 +10,7 @@ class UserViewModel extends UserBaseViewModel{
   final BaseStatefulState baseStatefulState;
   UserViewModel(this.baseStatefulState);
   Future<UserBaseResponseModel> login(UserRequest userLogin) async {
+    showLoading(true);
     UserModel userModel;
     try {
       UserBaseResponseModel response = await restApi.login(userLogin);
@@ -17,13 +18,12 @@ class UserViewModel extends UserBaseViewModel{
         if(response.user!=null){
           userModel =response.user;
         }else{
-          return UserBaseResponseModel(status:response.status,message:response.message,token:'',user:null);
+          return UserBaseResponseModel.Error(status:response.status,message:response.message);
         }
-
+        showLoading(false);
       }
     } catch (error, stacktrace) {
-       print("Exception occured: $error stackTrace: $stacktrace");
-      baseStatefulState.showBaseDialog("Error",ServerError().getError(error));
+      showLoading(false);
       return UserBaseResponseModel()..setException(ServerError.withError(error: error));
     }
     return UserBaseResponseModel()..user = userModel;
@@ -31,17 +31,19 @@ class UserViewModel extends UserBaseViewModel{
 
   Future<UserBaseResponseModel> register(UserRequest userLogin) async {
     UserModel userModel;
+    showLoading(true);
     try {
       UserBaseResponseModel response = await restApi.register(userLogin);
       if(response!=null){
         if(response.user!=null){
           userModel =response.user;
         }else{
-          return UserBaseResponseModel(status:response.status,message:response.message,token:'',user:null);
+          return UserBaseResponseModel.Error(status:response.status,message:response.message);
         }
       }
+      showLoading(false);
     } catch (error, stacktrace) {
-      baseStatefulState.showBaseDialog("Error",ServerError().getError(error));
+      showLoading(false);
       return UserBaseResponseModel()..setException(ServerError.withError(error: error));
     }
     return UserBaseResponseModel()..user = userModel;

@@ -8,21 +8,25 @@ class ProductViewModel extends ProductBaseViewModel{
   final BaseStatefulState baseStatefulState;
   ProductViewModel(this.baseStatefulState);
   Future<BaseResponseModel<List<Product>>> getProducts() async {
+    showLoading(true);
     List<Product> response;
     try {
       response = await network.getProducts();
+     showLoading(false);
     } catch (error, stacktrace) {
-      baseStatefulState.showBaseDialog("Error",ServerError().getError(error));
+      showLoading(false);
       return BaseResponseModel()..setException(ServerError.withError(error: error));
     }
     return BaseResponseModel()..data = response;
   }
   Future<BaseResponseModel<Product>> getDetailProduct(String id) async {
     Product response;
+    showLoading(true);
     try {
       response = await network.getDetailProduct(id);
+      showLoading(false);
     } catch (error, stacktrace) {
-      baseStatefulState.showBaseDialog("Error",ServerError().getError(error));
+      showLoading(false);
       return BaseResponseModel()..setException(ServerError.withError(error: error));
     }
     return BaseResponseModel()..data = response;

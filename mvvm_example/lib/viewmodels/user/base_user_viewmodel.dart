@@ -15,4 +15,11 @@ import 'package:mvvm_example/network/user/user_server.dart';
    restApi = new UserServer(dio);
   //final client = UserServer(dio, baseUrl: "your base url");//Multiple endpoints support
   }
+  showLoading(bool show){
+   if(show){
+    baseStatefulState.showLoading();
+   }else{
+    baseStatefulState.hideLoading();
+   }
+  }
 }

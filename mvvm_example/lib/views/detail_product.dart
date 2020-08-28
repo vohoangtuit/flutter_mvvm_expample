@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_example/base/bases_statefulwidget.dart';
 import 'package:mvvm_example/models/product.dart';
 import 'package:mvvm_example/utils/formats.dart';
-import 'package:mvvm_example/viewmodels/product_viewmodel.dart';
 import 'package:mvvm_example/widget/basewidget.dart';
-import 'package:mvvm_example/widget/loading.dart';
 import 'package:mvvm_example/widget/text_style.dart';
 
 
@@ -46,9 +44,6 @@ class _DetailProductState extends BaseStatefulState<DetailProduct> {
               ],
             ),
           ),
-          Center(
-            child: isLoading ? widgetLoading() : null,
-          )
         ],
       ),
 
@@ -57,28 +52,21 @@ class _DetailProductState extends BaseStatefulState<DetailProduct> {
   @override
   void initState() {
     super.initState();
-    _getDetail();
+    Future.delayed(Duration.zero, () async {
+      _getDetail();
+    });
   }
 
   _getDetail()async{
-
-    setState(() {
-      isLoading =true;
-    });
     var result =await productViewModel.getDetailProduct(widget.product.id);
     if(result!=null&&result.data!=null){
       setState(() {
         detail =result.data;
-        //showMaterialDialog(detail.name,detail.price.toString());
         showBaseDialog('Message',detail.name);
-        isLoading =false;
       });
 
     }else{
-      setState(() {
-        isLoading =false;
-      });
-
+      showBaseDialog('Message','Error Detail');
     }
 
   }

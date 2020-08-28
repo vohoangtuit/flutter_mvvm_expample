@@ -5,7 +5,6 @@ import 'package:mvvm_example/network/request/user_request.dart';
 import 'package:mvvm_example/utils/shared_preference.dart';
 import 'package:mvvm_example/widget/basewidget.dart';
 import 'package:mvvm_example/widget/button.dart';
-import 'package:mvvm_example/widget/loading.dart';
 
 import 'home.dart';
 
@@ -113,9 +112,6 @@ class _SignUpScreenState extends BaseStatefulState<SignUpScreen> {
                   ),
                 ),
               ),
-              Center(
-                child: isLoading ? widgetLoading() : null,
-              )
             ],
 
           ),
@@ -124,25 +120,16 @@ class _SignUpScreenState extends BaseStatefulState<SignUpScreen> {
 
   _handelSigUp()async {
     if (formKey.currentState.validate()) {
-      setState(() {
-        isLoading =true;
-      });
       var userLogin =  UserRequest.register(name:_fullNameController.text,email:_emailController.text,password:_passwordController.text) ;
       var result =await userViewModel.register(userLogin);
       if(result!=null){
-        setState(() {
-          isLoading =false;
-        });
         if(result.user!=null){
           _saveData(result.user);
         }else{
-          showBaseDialog("Error", result.message);
+          showBaseDialog("Error", result.getServerError.toString());
         }
       }
       else{
-        setState(() {
-          isLoading =false;
-        });
         showBaseDialog("Error", "Please try again");
       }
     }

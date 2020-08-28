@@ -79,3 +79,16 @@ Widget baseGestureDetector(BuildContext context,Widget child){
     },
   );
 }
+Stack widgetLoading(){
+  return Stack(
+    children: [
+      new Opacity(
+        opacity: 0.3,
+        child: const ModalBarrier(dismissible: false, color: Colors.grey),
+      ),
+      new Center(
+        child: new CircularProgressIndicator(),
+      ),
+    ],
+  );
+}
