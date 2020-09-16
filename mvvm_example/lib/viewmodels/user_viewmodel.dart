@@ -35,13 +35,14 @@ class UserViewModel extends UserBaseViewModel{
     try {
       UserBaseResponseModel response = await restApi.register(userLogin);
       if(response!=null){
+        showLoading(false);
         if(response.user!=null){
           userModel =response.user;
         }else{
           return UserBaseResponseModel.Error(status:response.status,message:response.message);
         }
       }
-      showLoading(false);
+
     } catch (error, stacktrace) {
       showLoading(false);
       return UserBaseResponseModel()..setException(ServerError.withError(error: error));

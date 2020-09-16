@@ -18,8 +18,8 @@ abstract class UserServer{
       'Language': 'vi'
     };
     dio.options = BaseOptions(
-      receiveTimeout: 7000,
-      connectTimeout: 7000,
+      // receiveTimeout: 7000,
+      // connectTimeout: 7000,
       contentType: 'application/json',
       headers: requestHeaders,
 

@@ -62,7 +62,7 @@ class _DetailProductState extends BaseStatefulState<DetailProduct> {
     if(result!=null&&result.data!=null){
       setState(() {
         detail =result.data;
-        showBaseDialog('Message',detail.name);
+       // showBaseDialog('Message',detail.name);
       });
 
     }else{

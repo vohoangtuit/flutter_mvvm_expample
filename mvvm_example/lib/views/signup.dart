@@ -126,7 +126,7 @@ class _SignUpScreenState extends BaseStatefulState<SignUpScreen> {
         if(result.user!=null){
           _saveData(result.user);
         }else{
-          showBaseDialog("Error", result.getServerError.toString());
+          showBaseDialog("Error", result.message);
         }
       }
       else{
@@ -139,6 +139,11 @@ class _SignUpScreenState extends BaseStatefulState<SignUpScreen> {
     SharedPre.saveString(SharedPre.sharedPreFullName, userModel.name);
     SharedPre.saveString(SharedPre.sharedPreEmail, userModel.email);
     //SharedPre.saveString(SharedPre.sharedPreAvatar, userModel.avatar);
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+   // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (BuildContext context) => HomeScreen()),
+      ModalRoute.withName('/'),
+    );
   }
 }
